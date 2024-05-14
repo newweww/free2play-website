@@ -17,6 +17,7 @@ const Menu = () => {
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
+
     },
     [
       (slider) => {
@@ -56,7 +57,7 @@ const Menu = () => {
 
   useEffect(() => {
     if (slideShow.length === 0 && games.length > 0) {
-      setSlideShow(games); 
+      setSlideShow(games);
     }
   }, [games, slideShow]);
   const fetchData = async () => {
@@ -109,6 +110,8 @@ const Menu = () => {
           )}
         </div>
       </div>
+
+      <hr />
 
       <div className='flex flex-row gap-2'>
         <div className='inline-block w-1/6'>
@@ -317,10 +320,16 @@ const Menu = () => {
           </div>
 
         </div>
-        <div className='grid grid-cols-4 gap-2 w-5/6'>
-          {games.map((game) => (
-            <Card key={game.id} game={game} />
-          ))}
+        <div className='w-5/6 flex flex-col '>
+          <div className='text-white p-2 flex flex-col gap-2'>
+            <h1 className='text-2xl'>Free2Play</h1>
+            <hr />
+          </div>
+          <div className='grid grid-cols-4 gap-2'>
+            {games.map((game) => (
+              <Card key={game.id} game={game} />
+            ))}
+          </div>
         </div>
       </div>
       <div className='flex justify-center'>
