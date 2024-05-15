@@ -1,9 +1,8 @@
 'use client'
-
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
     const [game, setGame] = useState({})
 
     const fetchGame = async () => {
@@ -72,4 +71,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page
+export default Page
