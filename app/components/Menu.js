@@ -4,13 +4,14 @@ import Card from './Card';
 import axios from 'axios';
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
+import { useRouter } from 'next/navigation';
 
 const Menu = () => {
+  const router = useRouter();
+
   const [games, setGames] = useState([]);
   const [slideShow, setSlideShow] = useState([]);
   const [pages, setPages] = useState(1);
-  const [genres, setGenres] = useState([]);
-  const [platforms, setPlatforms] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [orderBy, setOrderBy] = useState(null);
@@ -78,10 +79,6 @@ const Menu = () => {
     try {
       const response = await axios.request(options);
       setGames(response.data.slice(0, 48 * pages));
-      const uniqueGenres = Array.from(new Set(response.data.map((game) => game.genre)));
-      setGenres(uniqueGenres);
-      const uniquePlatforms = Array.from(new Set(response.data.map((game) => game.platform)));
-      setPlatforms(uniquePlatforms);
     } catch (error) {
       console.error(error);
     }
@@ -93,15 +90,23 @@ const Menu = () => {
     setOrderBy(null);
   }
 
+  const handleSlideClick = (game) => {
+    router.push(`/pages/${game.id}`);
+  }
+
   return (
     <div className='p-4 '>
-      <div className='flex justify-center h-80 m-2'>
+      <div className='flex flex-col gap-2 px-36'>
+        <h1 className='text-2xl text-white'>Featured Games</h1>
+        <hr />
+      </div>
+      <div className='flex flex-col justify-center min-h-80 m-2 p-4 gap-2'>
         <div ref={sliderRef} className="keen-slider w-auto">
           {slideShow.length > 0 && (
             <div className='flex justify-center h-80 m-2'>
               <div ref={sliderRef} className="keen-slider w-auto">
                 {slideShow.map((game) => (
-                  <div key={game.id} className="keen-slider__slide">
+                  <div key={game.id} className="keen-slider__slide" onClick={() => handleSlideClick(game)}>
                     <img src={game.thumbnail} alt={game.title} className="h-full mx-auto object-contain" />
                   </div>
                 ))}

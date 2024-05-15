@@ -14,9 +14,9 @@ export const Nav = () => {
         <div className='flex space-x-4'>
           <button className='border rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/')}>Home</button>
           <button className='border rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Category</button>
+          <button className='border rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Favorite</button>
           <button className='border rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/feedback')}>Feedback</button>
         </div>
-        <div>List</div>
       </div>
     </div>
   )
