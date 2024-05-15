@@ -126,139 +126,19 @@ const Menu = () => {
             <div className='flex flex-col gap-2'>
               <p className='text-xl'>Category</p>
               <div className='flex flex-col'>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Shooter"
-                    name="selectedGenres"
-                    value="Shooter"
-                    checked={selectedGenres === "Shooter"}
-                    onChange={() => setSelectedGenres("Shooter")}
-                  />
-                  <label htmlFor="Shooter" className="ml-2">Shooter</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Strategy"
-                    name="selectedGenres"
-                    value="Strategy"
-                    checked={selectedGenres === "Strategy"}
-                    onChange={() => setSelectedGenres("Strategy")}
-                  />
-                  <label htmlFor="Strategy" className="ml-2">Strategy</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="MOBA"
-                    name="selectedGenres"
-                    value="MOBA"
-                    checked={selectedGenres === "MOBA"}
-                    onChange={() => setSelectedGenres("MOBA")}
-                  />
-                  <label htmlFor="MOBA" className="ml-2">MOBA</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="MMORPG"
-                    name="selectedGenres"
-                    value="MMORPG"
-                    checked={selectedGenres === "MMORPG"}
-                    onChange={() => setSelectedGenres("MMORPG")}
-                  />
-                  <label htmlFor="MMORPG" className="ml-2">MMORPG</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Fighting"
-                    name="selectedGenres"
-                    value="Fighting"
-                    checked={selectedGenres === "Fighting"}
-                    onChange={() => setSelectedGenres("Fighting")}
-                  />
-                  <label htmlFor="Fighting" className="ml-2">Fighting</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Card"
-                    name="selectedGenres"
-                    value="Card"
-                    checked={selectedGenres === "Card"}
-                    onChange={() => setSelectedGenres("Card")}
-                  />
-                  <label htmlFor="Card" className="ml-2">Card Game</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Action"
-                    name="selectedGenres"
-                    value="Action"
-                    checked={selectedGenres === "Action"}
-                    onChange={() => setSelectedGenres("Action")}
-                  />
-                  <label htmlFor="Action" className="ml-2">Action</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Sports"
-                    name="selectedGenres"
-                    value="Sports"
-                    checked={selectedGenres === "Sports"}
-                    onChange={() => setSelectedGenres("Sports")}
-                  />
-                  <label htmlFor="Sports" className="ml-2">Sports</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Racing"
-                    name="selectedGenres"
-                    value="Racing"
-                    checked={selectedGenres === "Racing"}
-                    onChange={() => setSelectedGenres("Racing")}
-                  />
-                  <label htmlFor="Racing" className="ml-2">Racing</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="MMO"
-                    name="selectedGenres"
-                    value="MMO"
-                    checked={selectedGenres === "MMO"}
-                    onChange={() => setSelectedGenres("MMO")}
-                  />
-                  <label htmlFor="MMO" className="ml-2">MMO</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Social"
-                    name="selectedGenres"
-                    value="Social"
-                    checked={selectedGenres === "Social"}
-                    onChange={() => setSelectedGenres("Social")}
-                  />
-                  <label htmlFor="Social" className="ml-2">Social</label>
-                </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="Fantasy"
-                    name="selectedGenres"
-                    value="Fantasy"
-                    checked={selectedGenres === "Fantasy"}
-                    onChange={() => setSelectedGenres("Fantasy")}
-                  />
-                  <label htmlFor="Fantasy" className="ml-2">Fantasy</label>
-                </div>
-
+                {["Shooter", "Strategy", "MOBA", "MMORPG", "Fighting", "Card", "Action", "Sports", "Racing", "MMO", "Social", "Fantasy"].map((genre) => (
+                  <div key={genre} className="flex flex-row items-center">
+                    <input
+                      type="radio"
+                      id={genre}
+                      name="selectedGenres"
+                      value={genre}
+                      checked={selectedGenres === genre}
+                      onChange={() => setSelectedGenres(genre)}
+                    />
+                    <label htmlFor={genre} className="ml-2">{genre}</label>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -266,64 +146,43 @@ const Menu = () => {
 
             <div className='flex flex-col gap-2 '>
               <p className='text-xl'>Platform</p>
-              <div className="flex flex-row items-center">
-                <input
-                  type="radio"
-                  id="pc"
-                  name="selectedPlatform"
-                  value="pc"
-                  checked={selectedPlatform === "pc"}
-                  onChange={() => setSelectedPlatform("pc")}
-                />
-                <label htmlFor="pc" className="ml-2">PC (Windows)</label>
-              </div>
-              <div className="flex flex-row items-center">
-                <input
-                  type="radio"
-                  id="browser"
-                  name="selectedPlatform"
-                  value="browser"
-                  checked={selectedPlatform === "browser"}
-                  onChange={() => setSelectedPlatform("browser")}
-                />
-                <label htmlFor="browser" className="ml-2">Web Browser</label>
-              </div>
+              {["pc", "browser"].map((platform) => (
+                <div key={platform} className="flex flex-row items-center">
+                  <input
+                    type="radio"
+                    id={platform}
+                    name="selectedPlatform"
+                    value={platform}
+                    checked={selectedPlatform === platform}
+                    onChange={() => setSelectedPlatform(platform)}
+                  />
+                  <label htmlFor={platform} className="ml-2">{platform === "pc" ? "PC (Windows)" : "Web Browser"}</label>
+                </div>
+              ))}
             </div>
 
             <hr />
 
             <div className='flex flex-col gap-2'>
               <p className='text-xl'>Order by</p>
-              <div className='flex flex-col'>
-                <div className="flex flex-row items-center">
+              {["alphabetical", "release-date"].map((order) => (
+                <div key={order} className="flex flex-row items-center">
                   <input
                     type="radio"
-                    id="alphabetical"
+                    id={order}
                     name="orderBy"
-                    value="alphabetical"
-                    checked={orderBy === "alphabetical"}
-                    onChange={() => setOrderBy("alphabetical")}
+                    value={order}
+                    checked={orderBy === order}
+                    onChange={() => setOrderBy(order)}
                   />
-                  <label htmlFor="alphabetical" className="ml-2">Title</label>
+                  <label htmlFor={order} className="ml-2">{order === "alphabetical" ? "Title" : "Release Date"}</label>
                 </div>
-                <div className="flex flex-row items-center">
-                  <input
-                    type="radio"
-                    id="release-date"
-                    name="orderBy"
-                    value="release-date"
-                    checked={orderBy === "release-date"}
-                    onChange={() => setOrderBy("release-date")}
-                  />
-                  <label htmlFor="release-date" className="ml-2">Release Date</label>
-                </div>
-              </div>
+              ))}
             </div>
             <div className='flex justify-center'>
               <button className='border w-20 mt-3 text-white rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={resetSorting}>Reset</button>
             </div>
           </div>
-
         </div>
         <div className='w-5/6 flex flex-col '>
           <div className='text-white p-2 flex flex-col gap-2'>
