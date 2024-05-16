@@ -5,9 +5,13 @@ import axios from 'axios';
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react'
 
 const Menu = () => {
   const router = useRouter();
+
+  const { data: session } = useSession()
+  console.log(session)
 
   const [games, setGames] = useState([]);
   const [slideShow, setSlideShow] = useState([]);
