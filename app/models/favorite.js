@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const favoriteSchema = new Schema({
-    hashedEmail: {
+    id: {
         type: String,
         required: true
     },

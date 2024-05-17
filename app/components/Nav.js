@@ -12,17 +12,6 @@ export const Nav = () => {
 
   const router = useRouter()
   const { data: session } = useSession()
-  const [hashedEmail, setHashedEmail] = useState('')
-
-  useEffect(() => {
-    if (session && session.user && session.user.email) {
-      bcryptjs.hash(session.user.email, 10).then(hash => {
-        const urlSafeHash = base64url.fromBase64(Buffer.from(hash).toString('base64'))
-        setHashedEmail(urlSafeHash)
-      })
-    }
-  }, [session])
-
 
   return (
     <div className='p-4'>
@@ -30,7 +19,7 @@ export const Nav = () => {
         <div>FREE2PLAY</div>
         <div className='flex space-x-4'>
           <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/')}>Home</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push(`/pages/favorite/${hashedEmail}`)}>Favorite</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push(`/pages/favorite/${session.user._id}`)}>Favorite</button>
           {!session ? (
             <>
               <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/login')}>SignIn</button>
@@ -39,7 +28,6 @@ export const Nav = () => {
           ) : (
             <button className='border-red-500  text-red-500 rounded-md min-w-20 h-10 p-2 hover:bg-red-500 hover:text-white' onClick={() => signOut()}>Logout</button>
           )}
-
         </div>
       </div>
     </div>

@@ -12,11 +12,11 @@ const authOptions = {
 
             },
             async authorize(credentials, req) {
-                
+
                 const { email, password } = credentials;
 
                 try {
-                    
+
                     await connectDB();
                     const user = await User.findOne({ email });
 
@@ -42,11 +42,25 @@ const authOptions = {
     session: {
         strategy: 'jwt',
     },
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token._id = user._id;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            if (token) {
+                session.user._id = token._id;
+            }
+            return session;
+        },
+    },
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
-        signIn: 'login'
-    }
-}
+        signIn: 'login',
+    },
+};
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST}
+export { handler as GET, handler as POST };

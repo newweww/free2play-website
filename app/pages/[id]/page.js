@@ -37,10 +37,10 @@ const Page = ({ params }) => {
 
     const handleFavorite = () => {
         axios.post('/api/fav', {
+            id: session.user._id,
             title: game.title,
             img: game.thumbnail,
             genre: game.genre,
-            email: session.user.email
         })
             .then(response => {
                 console.log('Added to favorites:', response.data);
