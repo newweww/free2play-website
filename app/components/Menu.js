@@ -61,6 +61,10 @@ const Menu = () => {
   }, [pages, selectedGenres, selectedPlatform, orderBy]);
 
   useEffect(() => {
+    setPages(1);
+  }, [selectedGenres, selectedPlatform, orderBy]);
+
+  useEffect(() => {
     if (slideShow.length === 0 && games.length > 0) {
       setSlideShow(games);
     }
@@ -98,6 +102,7 @@ const Menu = () => {
     setSelectedGenres(null);
     setSelectedPlatform(null);
     setOrderBy(null);
+    setPages(1)
   }
 
   const handleSlideClick = (game) => {
@@ -207,9 +212,14 @@ const Menu = () => {
           </div>
         </div>
       </div>
-      <div className='flex justify-center'>
-        <button className='border w-screen mt-3 text-white rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => setPages(pages + 1)}>Load More</button>
-      </div>
+      {
+        games.length >= (48 * pages) ? (
+          <div className='flex justify-center'>
+            <button className='border w-screen mt-3 text-white rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => setPages(pages + 1)}>Load More</button>
+          </div>
+        ) : (
+          <div></div>)
+      }
     </div>
   );
 };
