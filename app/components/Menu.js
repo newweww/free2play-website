@@ -19,42 +19,42 @@ const Menu = () => {
   const [selectedGenres, setSelectedGenres] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [orderBy, setOrderBy] = useState(null);
-  const [sliderRef] = useKeenSlider(
+  const [sliderRef, instanceRef] = useKeenSlider(
     {
       loop: true,
-
     },
     [
       (slider) => {
-        let timeout
-        let mouseOver = false
+        let timeout;
+        let mouseOver = false;
         function clearNextTimeout() {
-          clearTimeout(timeout)
+          clearTimeout(timeout);
         }
         function nextTimeout() {
-          clearTimeout(timeout)
-          if (mouseOver) return
+          clearTimeout(timeout);
+          if (mouseOver) return;
           timeout = setTimeout(() => {
-            slider.next()
-          }, 5000)
+            slider.next();
+          }, 5000);
         }
         slider.on("created", () => {
           slider.container.addEventListener("mouseover", () => {
-            mouseOver = true
-            clearNextTimeout()
-          })
+            mouseOver = true;
+            clearNextTimeout();
+          });
           slider.container.addEventListener("mouseout", () => {
-            mouseOver = false
-            nextTimeout()
-          })
-          nextTimeout()
-        })
-        slider.on("dragStarted", clearNextTimeout)
-        slider.on("animationEnded", nextTimeout)
-        slider.on("updated", nextTimeout)
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
       },
     ]
-  )
+  );
+
 
   useEffect(() => {
     fetchData();
@@ -64,7 +64,13 @@ const Menu = () => {
     if (slideShow.length === 0 && games.length > 0) {
       setSlideShow(games);
     }
-  }, [games, slideShow]);
+    if (instanceRef.current && instanceRef.current.refresh) {
+      instanceRef.current.refresh();
+    }
+  }, [games, slideShow, instanceRef]);
+
+
+
   const fetchData = async () => {
     const options = {
       method: 'GET',
@@ -105,10 +111,10 @@ const Menu = () => {
         <hr />
       </div>
       <div className='flex flex-col justify-center min-h-80 m-2 p-4 gap-2'>
-        <div ref={sliderRef} className="keen-slider w-auto">
+        <div key={slideShow.length} ref={sliderRef} className="keen-slider w-auto">
           {slideShow.length > 0 && (
             <div className='flex justify-center h-80 m-2'>
-              <div ref={sliderRef} className="keen-slider w-auto">
+              <div className="keen-slider w-auto">
                 {slideShow.map((game) => (
                   <div key={game.id} className="keen-slider__slide" onClick={() => handleSlideClick(game)}>
                     <img src={game.thumbnail} alt={game.title} className="h-full mx-auto object-contain" />
@@ -118,6 +124,7 @@ const Menu = () => {
             </div>
           )}
         </div>
+
       </div>
 
       <hr />

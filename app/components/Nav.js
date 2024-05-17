@@ -17,9 +17,9 @@ export const Nav = () => {
         <div>FREE2PLAY</div>
         <div className='flex space-x-4'>
           <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/')}>Home</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Category</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Favorite</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/feedback')}>Feedback</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>คิดไม่ออก</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/feedback')}>ใส่ไรดี</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Favorite(เดี๋ยวทำ)</button>
           {!session ? (
             <>
               <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/login')}>SignIn</button>
