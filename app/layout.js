@@ -15,11 +15,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <title>
-         Free2Play
+          Free2Play
         </title>
         <meta
           name="description"
-          content="A list of free-to-play games."
+          content="A list of free-to-play games"
           key="desc"
         />
       </Head>
