@@ -13,6 +13,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <title>
+         Free2Play
+        </title>
+        <meta
+          name="description"
+          content="A list of free-to-play games."
+          key="desc"
+        />
+      </Head>
       <body className={inter.className}>
         <AuthProvider>
           <div>
