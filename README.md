@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Free2Play
 
-## Getting Started
+I created this website for my practice to improve my coding skills.
 
-First, run the development server:
+**Deploy**: https://free2play-website.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Feature
+* **User Authentication**: Users can sign up, log in, and log out securely using NextAuth.
+* **Free tp play games Listing**: Users can browse through a vast collection of game titles fetched from an API or database.
+* **Favorite Management**: Users can add game to their favorite.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data Source
+The games data for this project is sourced from the [Free-to-Play Games Database](https://rapidapi.com/digiwalls/api/free-to-play-games-database) This API has data about games title, genre, release date, etc. Many thanks to **Manu Castrillon** for the API I use in this project.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+* **Next.js**: Next.js is a React framework by Vercel for building server-rendered or statically-generated web applications with features like automatic code splitting and routing.
+* **Tailwind CSS**: Tailwind CSS is a utility-first CSS framework that provides a collection of low-level utility classes for building custom designs directly in your HTML. It emphasizes design flexibility and efficiency by allowing developers to apply styles directly to elements without writing custom CSS.
+* **MongoDB**: MongoDB is an open-source NoSQL database system that stores data in flexible JSON-like documents, known for its scalability and ease of use.
+* **NextAuth**: NextAuth.js is an authentication library for Next.js apps, simplifying integration with various providers like OAuth and JWT for secure user authentication and session management.
