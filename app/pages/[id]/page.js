@@ -1,9 +1,11 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useSession } from 'next-auth/react'
 
 const Page = ({ params }) => {
     const [game, setGame] = useState({})
+    const { data: session } = useSession()
 
     const fetchGame = async () => {
         const options = {
@@ -33,6 +35,21 @@ const Page = ({ params }) => {
         window.open(game.game_url, '_blank');
     }
 
+    const handleFavorite = () => {
+        axios.post('/api/fav', {
+            title: game.title,
+            img: game.thumbnail,
+            genre: game.genre,
+            email: session.user.email
+        })
+            .then(response => {
+                console.log('Added to favorites:', response.data);
+            })
+            .catch(error => {
+                console.error('Error adding to favorites:', error);
+            });
+    }
+
     return (
         <div className='flex justify-center p-2'>
             <div className=' flex flex-col gap-2 w-4/6 p-5 items-center'>
@@ -55,6 +72,7 @@ const Page = ({ params }) => {
                                     <p className='text-xl'>Publisher: {game.publisher}</p>
                                 </div>
                             </div>
+                            <button className='border rounded-md w-24 h-10 p-2 hover:bg-white hover:text-black' onClick={handleFavorite}>Favoritee</button>
                         </div>
                     </div>
                 </div>

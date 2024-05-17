@@ -1,15 +1,28 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
+import bcryptjs from "bcryptjs";
+import base64url from "base64url";
 
 
 export const Nav = () => {
 
   const router = useRouter()
   const { data: session } = useSession()
+  const [hashedEmail, setHashedEmail] = useState('')
+
+  useEffect(() => {
+    if (session && session.user && session.user.email) {
+      bcryptjs.hash(session.user.email, 10).then(hash => {
+        const urlSafeHash = base64url.fromBase64(Buffer.from(hash).toString('base64'))
+        setHashedEmail(urlSafeHash)
+      })
+    }
+  }, [session])
+
 
   return (
     <div className='p-4'>
@@ -17,9 +30,7 @@ export const Nav = () => {
         <div>FREE2PLAY</div>
         <div className='flex space-x-4'>
           <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/')}>Home</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>คิดไม่ออก</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/feedback')}>ใส่ไรดี</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/pages/category')}>Favorite(เดี๋ยวทำ)</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push(`/pages/favorite/${hashedEmail}`)}>Favorite</button>
           {!session ? (
             <>
               <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/login')}>SignIn</button>

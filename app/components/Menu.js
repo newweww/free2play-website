@@ -103,6 +103,7 @@ const Menu = () => {
     setSelectedPlatform(null);
     setOrderBy(null);
     setPages(1)
+    console.log(session.user.id)
   }
 
   const handleSlideClick = (game) => {
