@@ -5,6 +5,10 @@ const favoriteSchema = new Schema({
         type: String,
         required: true
     },
+    gameId: {
+        type: String,
+        required: true
+    },
     img: {
         type: String,
         required: true

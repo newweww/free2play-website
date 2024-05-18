@@ -32,7 +32,6 @@ function RegsiterPage() {
         }
 
         try {
-
             const resCheckUser = await fetch('/api/checkuser', {
                 method: 'POST',
                 headers: {

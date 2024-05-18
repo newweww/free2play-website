@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 const Page = ({ params }) => {
     const [game, setGame] = useState({})
     const { data: session } = useSession()
+    const [error, setError] = useState('')
 
     const fetchGame = async () => {
         const options = {
@@ -35,19 +36,40 @@ const Page = ({ params }) => {
         window.open(game.game_url, '_blank');
     }
 
-    const handleFavorite = () => {
-        axios.post('/api/fav', {
-            id: session.user._id,
-            title: game.title,
-            img: game.thumbnail,
-            genre: game.genre,
-        })
-            .then(response => {
-                console.log('Added to favorites:', response.data);
+    const handleFavorite = async () => {
+        try {
+
+            const resCheckFav = await fetch('/api/checkfav', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ gameId: game.id })
             })
-            .catch(error => {
-                console.error('Error adding to favorites:', error);
-            });
+
+            const { favorite } = await resCheckFav.json()
+
+            if (favorite) {
+                setError('Game already in favorites')
+                return;
+            }
+
+            axios.post('/api/fav', {
+                id: session.user._id,
+                gameId: game.id,
+                title: game.title,
+                img: game.thumbnail,
+                genre: game.genre,
+            })
+                .then(response => {
+                    console.log('Added to favorites:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error adding to favorites:', error);
+                });
+        } catch (error) {
+            console.error('Error adding favorite:', error);
+        }
     }
 
     return (
@@ -72,7 +94,8 @@ const Page = ({ params }) => {
                                     <p className='text-xl'>Publisher: {game.publisher}</p>
                                 </div>
                             </div>
-                            <button className='border rounded-md w-24 h-10 p-2 hover:bg-white hover:text-black' onClick={handleFavorite}>Favoritee</button>
+                            <button className='border text-green-500 border-green-500 rounded-md w-24 h-10 p-2 hover:bg-green-500 hover:text-white' onClick={handleFavorite}>Favoritee</button>
+                            {error && <p className='text-green-500'>{error}</p>}
                         </div>
                     </div>
                 </div>

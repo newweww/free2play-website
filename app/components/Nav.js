@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import bcryptjs from "bcryptjs";
-import base64url from "base64url";
 
 
 export const Nav = () => {
