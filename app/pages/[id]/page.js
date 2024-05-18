@@ -39,6 +39,11 @@ const Page = ({ params }) => {
     const handleFavorite = async () => {
         try {
 
+            if (!session) {
+                setError('You need to be logged in to add to favorites')
+                return;
+            }
+
             const resCheckFav = await fetch('/api/checkfav', {
                 method: 'POST',
                 headers: {

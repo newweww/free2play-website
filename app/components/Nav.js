@@ -11,13 +11,21 @@ export const Nav = () => {
   const router = useRouter()
   const { data: session } = useSession()
 
+  const handleFavorite = () => {
+    if (session) {
+      router.push(`pages/favorite/${session.user._id}`)
+    } else {
+      router.push('/login')
+    }
+  }
+
   return (
     <div className='p-4'>
       <div className='text-white flex flex-row justify-between items-center'>
         <div>FREE2PLAY</div>
         <div className='flex space-x-4'>
           <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/')}>Home</button>
-          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push(`/pages/favorite/${session.user._id}`)}>Favorite</button>
+          <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={handleFavorite}>Favorite</button>
           {!session ? (
             <>
               <button className=' rounded-md min-w-20 h-10 p-2 hover:bg-white hover:text-black' onClick={() => router.push('/login')}>SignIn</button>
