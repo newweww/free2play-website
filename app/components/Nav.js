@@ -13,12 +13,11 @@ export const Nav = () => {
 
   const handleFavorite = () => {
     if (session) {
-      router.push(`pages/favorite/${session.user._id}`)
+      router.replace(`/pages/favorite/${session.user._id}`)
     } else {
-      router.push('/login')
+      router.replace('/login')
     }
   }
-
   return (
     <div className='p-4'>
       <div className='text-white flex flex-row justify-between items-center'>
