@@ -8,7 +8,7 @@ I created this website for my practice to improve my coding skills.
 
 ## Feature
 * **User Authentication**: Users can sign up, log in, and log out securely using NextAuth.
-* **Free tp play games Listing**: Users can browse through a vast collection of game titles fetched from an API or database.
+* **Free to play games Listing**: Users can browse through a vast collection of game titles fetched from an API or database.
 * **Favorite Management**: Users can add game to their favorite.
 
 ## Data Source
