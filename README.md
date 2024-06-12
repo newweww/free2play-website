@@ -1,5 +1,7 @@
 # Free2Play
 
+![thumbnail1](https://github.com/newweww/free2play-website/assets/154038750/711fa562-c994-4c0a-a03f-8a7f7ee82e50)
+
 I created this website for my practice to improve my coding skills.
 
 **Deploy**: https://free2play-website.vercel.app/
