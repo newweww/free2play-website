@@ -1,6 +1,6 @@
 # Free2Play
 
-![thumbnail1](https://github.com/newweww/free2play-website/assets/154038750/711fa562-c994-4c0a-a03f-8a7f7ee82e50)
+![thumbnail7](https://github.com/newweww/free2play-website/assets/154038750/67810c5a-1e8d-4edc-aa3a-09848ee7b7f4)
 
 I created this website for my practice to improve my coding skills.
 
